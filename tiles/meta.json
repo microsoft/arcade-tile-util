@@ -1,0 +1,11 @@
+{
+    "width": 16,
+    "height": 16,
+    "creator": "image.ofBuffer",
+    "star": {
+        "namespace": "tileUtil",
+        "mimeType": "image/x-mkcd-f4"
+    },
+    "tags": "tile category-TileUtil",
+    "blockIdentity": "images._tile"
+}

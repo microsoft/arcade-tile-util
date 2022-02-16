@@ -10,7 +10,9 @@
         "README.md",
         "assets.json",
         "state.ts",
-        "api.ts"
+        "api.ts",
+        "tiles.util.jres",
+        "tiles.util.ts"
     ],
     "testFiles": [
         "test.ts"

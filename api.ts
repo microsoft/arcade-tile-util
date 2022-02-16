@@ -1,4 +1,4 @@
-namespace ConnectionKind {
+namespace MapConnectionKind {
     let nextKind: number
     export function create() {
         if (nextKind === undefined) nextKind = 1;
@@ -64,7 +64,7 @@ namespace tileUtil {
     //% shim=KIND_GET
     //% blockId=tileUtil_connectionKind block="$kind"
     //% group="Connections" weight=0
-    //% kindNamespace=ConnectionKind kindMemberName=kind kindPromptHint="e.g. Door1, Tunnel1, ..."
+    //% kindNamespace=MapConnectionKind kindMemberName=kind kindPromptHint="e.g. Door1, Tunnel1, ..."
      export function _connectionKind(kind: number): number {
         return kind;
     }
@@ -229,7 +229,7 @@ namespace tileUtil {
     //% group="Tiles" weight=35 blockGap=8
     export function coverTile(location: tiles.Location, cover: Image) {
         if (!game.currentScene().tileMap || !game.currentScene().tileMap.enabled) return;
-        
+
         _state().coverTile(location.column, location.row, cover);
     }
 
@@ -258,7 +258,7 @@ namespace tileUtil {
     //% group="Tilemaps" weight=30
     export function currentTilemap(): tiles.TileMapData {
         if (!game.currentScene().tileMap) return undefined;
-        
+
         return game.currentScene().tileMap.data;
     }
 

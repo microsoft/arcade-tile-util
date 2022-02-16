@@ -1,6 +1,6 @@
 {
     "name": "arcade-tile-util",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "",
     "dependencies": {
         "device": "*"
@@ -12,7 +12,8 @@
         "state.ts",
         "api.ts",
         "tiles.util.jres",
-        "tiles.util.ts"
+        "tiles.util.ts",
+        "icon.png"
     ],
     "testFiles": [
         "test.ts"

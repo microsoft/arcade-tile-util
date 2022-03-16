@@ -65,7 +65,8 @@ namespace tileUtil {
     //% blockId=tileUtil_connectionKind block="$kind"
     //% group="Connections" weight=0
     //% kindNamespace=MapConnectionKind kindMemberName=kind kindPromptHint="e.g. Door1, Tunnel1, ..."
-     export function _connectionKind(kind: number): number {
+    //% help=github:arcade-tile-util/docs/connection-kind
+    export function _connectionKind(kind: number): number {
         return kind;
     }
 
@@ -81,6 +82,7 @@ namespace tileUtil {
     //% mapB.defl=tilemap2
     //% connectionId.shadow=tileUtil_connectionKind
     //% group="Connections" weight=40 blockGap=8
+    //% help=github:arcade-tile-util/docs/connect-maps
     export function connectMaps(mapA: tiles.TileMapData, mapB: tiles.TileMapData, connectionId: number): void {
         _state().connectMaps(mapA, mapB, connectionId);
     }
@@ -94,6 +96,7 @@ namespace tileUtil {
     //% map.defl=tilemap
     //% connectionId.shadow=tileUtil_connectionKind
     //% group="Connections" weight=10 blockGap=8
+    //% help=github:arcade-tile-util/docs/get-connected-map
     export function getConnectedMap(map: tiles.TileMapData, connectionId: number): tiles.TileMapData {
         return _state().getConnectedMap(map, connectionId);
     }
@@ -106,6 +109,7 @@ namespace tileUtil {
     //% blockId=tileUtil_loadConnectedMap
     //% connectionId.shadow=tileUtil_connectionKind
     //% group="Connections" weight=30 blockGap=8
+    //% help=github:arcade-tile-util/docs/load-connected-map
     export function loadConnectedMap(connectionId: number) {
         const nextMap = getConnectedMap(currentTilemap(), connectionId)
         if (nextMap) {
@@ -127,6 +131,7 @@ namespace tileUtil {
     //% tilemap.fieldOptions.initHeight=15
     //% group="Tilemaps" weight=49 blockGap=8
     //% duplicateShadowOnDrag
+    //% help=github:arcade-tile-util/docs/create-small-map
     export function createSmallMap(tilemap: tiles.TileMapData): tiles.TileMapData {
         return tilemap
     }
@@ -140,6 +145,7 @@ namespace tileUtil {
     //% map.shadow=variables_get
     //% map.defl=tilemap
     //% group="Tilemaps" weight=25 blockGap=8
+    //% help=github:arcade-tile-util/docs/clone-map
     export function cloneMap(map: tiles.TileMapData): tiles.TileMapData {
         const buffer = control.createBuffer(4 + map.width * map.height);
         buffer.setNumber(NumberFormat.UInt16LE, 0, map.width);
@@ -269,6 +275,7 @@ namespace tileUtil {
     //% blockId=tileUtil_createCameraOnTile
     //% group="Camera" weight=10 blockGap=8
     //% location.shadow=mapgettile
+    //% help=github:arcade-tile-util/docs/center-camera-on-tile
     export function centerCameraOnTile(location: tiles.Location) {
         scene.centerCameraAt(location.x, location.y);
     }

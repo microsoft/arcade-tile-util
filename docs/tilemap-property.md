@@ -18,7 +18,7 @@ tileUtil.tilemapProperty(null, TilemapProperty.Rows)
 
 ## Returns
 
-* a [number](/types/number) that is value of the requested property.
+* a [number](/types/number) that is the value of the requested property.
 
 ## Example
 

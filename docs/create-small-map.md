@@ -30,10 +30,6 @@ tiles.setCurrentTilemap(tilemap1)
 tileUtil.connectMaps(tilemap1, tilemap2, MapConnectionKind.Door1)
 ```
 
-## See also
-
-[clone map](/tile-util/clone-map)
-
 ```package
 arcade-tile-util=github:microsoft/arcade-tile-util
 ```

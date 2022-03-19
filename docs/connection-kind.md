@@ -46,11 +46,6 @@ game.onUpdateInterval(1000, function () {
 })
 ```
 
-## See also
-
-[connect maps](/tile-util/connect-maps),
-[load connected map](/tile-util/load-connected-map)
-
 ```package
 arcade-tile-util=github:microsoft/arcade-tile-util
 ```

@@ -31,10 +31,6 @@ tileUtil.connectMaps(tilemap1, tilemap2, MapConnectionKind.Door1)
 tileUtil.connectMaps(tilemap2, tilemap3, MapConnectionKind.Door2)
 ```
 
-## See also
-
-[connect maps](/tile-util/connect-maps)
-
 ```package
 arcade-tile-util=github:microsoft/arcade-tile-util
 ```

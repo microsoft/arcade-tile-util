@@ -29,10 +29,6 @@ tileUtil.connectMaps(tilemap1, tilemap2, MapConnectionKind.Door1)
 tiles.setCurrentTilemap(tilemap1)
 ```
 
-## See also
-
-[load connected map](/tile-util/load-connected-map)
-
 ```package
 arcade-tile-util=github:microsoft/arcade-tile-util
 ```

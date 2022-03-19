@@ -29,10 +29,6 @@ tiles.setCurrentTilemap(mapCopy)
 tileUtil.replaceAllTiles(assets.tile`myTile1`, assets.tile`myTile2`)
 ```
 
-## See also
-
-[current tilemap](/tile-util/current-tilemap)
-
 ```package
 arcade-tile-util=github:microsoft/arcade-tile-util
 ```

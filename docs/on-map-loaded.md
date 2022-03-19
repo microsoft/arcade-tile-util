@@ -49,11 +49,6 @@ tileUtil.onMapLoaded(function (tilemap) {
 })
 ```
 
-## See also
-
-[on map loaded](/tile-util/on-map-loaded),
-[unload tilemap](/tile-util/unload-tilemap)
-
 ```package
 arcade-tile-util=github:microsoft/arcade-tile-util
 ```

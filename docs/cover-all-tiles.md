@@ -23,13 +23,6 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
 tiles.setCurrentTilemap(tilemap`level1`)
 ```
 
-## See also
-
-[replace all tiles](/tile-util/replace-all-tiles),
-[cover tile](/tile-util/cover-tile)
-
-
-
 ```package
 arcade-tile-util=github:microsoft/arcade-tile-util
 ```

@@ -40,10 +40,6 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
 tiles.setCurrentTilemap(tilemap`level1`)
 ```
 
-## See also
-
-[cover all tiles](/tile-util/cover-all-tiles)
-
 ```package
 arcade-tile-util=github:microsoft/arcade-tile-util
 ```

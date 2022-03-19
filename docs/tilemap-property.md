@@ -30,10 +30,6 @@ let tmRows = tileUtil.tilemapProperty(tileUtil.currentTilemap(), tileUtil.Tilema
 game.splash("Tilemap Rows:", "" + tmRows)
 ```
 
-## See also
-
-[current tilemap](/tile-util/current-tilemap)
-
 ```package
 arcade-tile-util=github:microsoft/arcade-tile-util
 ```

@@ -25,10 +25,6 @@ tileUtil.replaceAllTiles(assets.tile`myTile0`, assets.tile`transparency16`)
 tileUtil.replaceAllTiles(assets.tile`myTile1`, assets.tile`transparency16`)
 ```
 
-## See also
-
-[tilemap property](/tile-util/tilemap-property)
-
 ```package
 arcade-tile-util=github:microsoft/arcade-tile-util
 ```

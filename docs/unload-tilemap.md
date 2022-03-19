@@ -17,11 +17,6 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
 tiles.setCurrentTilemap(tilemap`level1`)
 ```
 
-## See also
-
-[on tilemap unloaded](/tile-util/on-tilemap-unloaded),
-[current tilemap](/tile-util/current-tilemap)
-
 ```package
 arcade-tile-util=github:microsoft/arcade-tile-util
 ```

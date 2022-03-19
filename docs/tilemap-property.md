@@ -13,7 +13,7 @@ tileUtil.tilemapProperty(null, TilemapProperty.Rows)
 >* `number of colunms`: the number of tile columns in the tilemap
 >* `number of rows`: the number of tile rows in the tilemap
 >* `height`: height in pixels of the tilemap
->* `width`: width in pixels of the 
+>* `width`: width in pixels of the tilemap
 >* `tile width`: the width in pixels of each tile location
 
 ## Returns

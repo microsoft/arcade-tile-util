@@ -6,7 +6,7 @@ Connect two tilemaps and associate them with a connection identifier.
 tileUtil.connectMaps(null, null, MapConnectionKind.Door1)
 ```
 
-As an easy way to make scene transitions, you can connect two tilemaps together. The connection is assigned an identifier which you use to load one tilemap that is connected to the current tilemap. This way your program doesn't need to recall which tilemap is need for the scene transition. All you need is the connection identifier you've assigned for the change of one tilemap to the other. You create or use a named identifier, such as `Door1`, `Door2`, `CliffEdge`, or `EscapeHatch`.
+As an easy way to make scene transitions, you can connect two tilemaps together. The connection is assigned an identifier which you use to load one tilemap that is connected to the current tilemap. This way your program doesn't need to recall which tilemap is needed for the scene transition. All you need is the connection identifier you've assigned for the change of one tilemap to the other. You can create or use a named identifier, such as `Door1`, `Door2`, `CliffEdge`, or `EscapeHatch`.
 
 ## Parameters
 

@@ -43,6 +43,7 @@ namespace tileUtil {
     //% data.shadow=variables_get
     //% data.defl=tilemap
     //% group=Tilemaps
+    //% help=github:arcade-tile-util/docs/tilemap-property
     export function tilemapProperty(data: tiles.TileMapData, prop: TilemapProperty): number {
         switch (prop) {
             case TilemapProperty.Columns:
@@ -169,6 +170,7 @@ namespace tileUtil {
     //% blockId=tileUtil_onMapLoaded
     //% draggableParameters="reporter"
     //% group="Events" weight=20 blockGap=8
+    //% help=github:arcade-tile-util/docs/on-map-loaded
     export function onMapLoaded(cb: (tilemap: tiles.TileMapData) => void) {
         tiles.addEventListener(tiles.TileMapEvent.Loaded, cb);
     }
@@ -180,6 +182,7 @@ namespace tileUtil {
     //% blockId=tileUtil_onMapUnloaded
     //% draggableParameters="reporter"
     //% group="Events" weight=10 blockGap=8
+    //% help=github:arcade-tile-util/docs/on-map-unloaded
     export function onMapUnloaded(cb: (tilemap: tiles.TileMapData) => void) {
         tiles.addEventListener(tiles.TileMapEvent.Unloaded, cb);
     }
@@ -191,6 +194,7 @@ namespace tileUtil {
     //% block="unload current tilemap"
     //% blockId=tileUtil_unloadTilemap
     //% group="Events" weight=0 blockGap=8
+    //% help=github:arcade-tile-util/docs/unload-tilemap
     export function unloadTilemap() {
         if (game.currentScene().tileMap) {
             game.currentScene().tileMap.setData(undefined);
@@ -208,6 +212,7 @@ namespace tileUtil {
     //% cover.shadow=tileset_tile_picker
     //% cover.decompileIndirectFixedInstances=true
     //% group="Tiles" weight=40 blockGap=8
+    //% help=github:arcade-tile-util/docs/cover-all-tiles
     export function coverAllTiles(tileKind: Image, cover: Image) {
         if (!game.currentScene().tileMap || !game.currentScene().tileMap.enabled) return;
 
@@ -227,6 +232,7 @@ namespace tileUtil {
     //% cover.shadow=tileset_tile_picker
     //% cover.decompileIndirectFixedInstances=true
     //% group="Tiles" weight=35 blockGap=8
+    //% help=github:arcade-tile-util/docs/cover-tile
     export function coverTile(location: tiles.Location, cover: Image) {
         if (!game.currentScene().tileMap || !game.currentScene().tileMap.enabled) return;
 
@@ -244,6 +250,7 @@ namespace tileUtil {
     //% to.shadow=tileset_tile_picker
     //% to.decompileIndirectFixedInstances=true
     //% group="Tiles" weight=20
+    //% help=github:arcade-tile-util/docs/replace-all-tiles
     export function replaceAllTiles(from: Image, to: Image) {
         for (const loc of tiles.getTilesByType(from)) {
             tiles.setTileAt(loc, to)
@@ -256,6 +263,7 @@ namespace tileUtil {
     //% block="current tilemap"
     //% blockId=tileUtil_getLoadedMap
     //% group="Tilemaps" weight=30
+    //% help=github:arcade-tile-util/docs/current-tilemap
     export function currentTilemap(): tiles.TileMapData {
         if (!game.currentScene().tileMap) return undefined;
 
@@ -284,6 +292,7 @@ namespace tileUtil {
     //% spriteImage.shadow=screen_image_picker
     //% spriteKind.shadow=spritekind
     //% group="Tiles" weight=30 blockGap=8
+    //% help=github:arcade-tile-util/docs/create-tiles-on-sprite
     export function createSpritesOnTiles(tileKind: Image, spriteImage: Image, spriteKind: number) {
         const scene = game.currentScene();
 

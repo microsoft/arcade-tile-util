@@ -255,7 +255,7 @@ namespace tileUtil {
     //% from.decompileIndirectFixedInstances=true
     //% to.shadow=tileset_tile_picker
     //% to.decompileIndirectFixedInstances=true
-    //% group="Tiles" weight=20
+    //% group="Tiles" weight=20 blockGap=8
     //% help=github:arcade-tile-util/docs/replace-all-tiles
     export function replaceAllTiles(from: Image, to: Image) {
         for (const loc of tiles.getTilesByType(from)) {

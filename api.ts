@@ -255,11 +255,27 @@ namespace tileUtil {
     //% from.decompileIndirectFixedInstances=true
     //% to.shadow=tileset_tile_picker
     //% to.decompileIndirectFixedInstances=true
-    //% group="Tiles" weight=20
+    //% group="Tiles" weight=20 blockGap=8
     //% help=github:arcade-tile-util/docs/replace-all-tiles
     export function replaceAllTiles(from: Image, to: Image) {
         for (const loc of tiles.getTilesByType(from)) {
             tiles.setTileAt(loc, to)
+        }
+    }
+
+    /**
+     * Turns walls on or off for all tiles of a given kind.
+     */
+    //% block="set wall $on at all $tile locations"
+    //% blockId=tileUtil_setWalls
+    //% tile.shadow=tileset_tile_picker
+    //% tile.decompileIndirectFixedInstances=true
+    //% on.shadow=toggleOnOff
+    //% group="Tiles" weight=10
+    //% help=github:arcade-tile-util/docs/set-walls
+    export function setWalls(tile: Image, on: boolean) {
+        for (const loc of tiles.getTilesByType(tile)) {
+            tiles.setWallAt(loc, on);
         }
     }
 

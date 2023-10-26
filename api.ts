@@ -264,6 +264,22 @@ namespace tileUtil {
     }
 
     /**
+     * Turns walls on or off for all tiles of a given kind.
+     */
+    //% block="set wall $on at all $tile locations"
+    //% blockId=tileUtil_setWalls
+    //% tile.shadow=tileset_tile_picker
+    //% tile.decompileIndirectFixedInstances=true
+    //% on.shadow=toggleOnOff
+    //% group="Tiles" weight=10
+    //% help=github:arcade-tile-util/docs/set-walls
+    export function setWalls(tile: Image, on: boolean) {
+        for (const loc of tiles.getTilesByType(tile)) {
+            tiles.setWallAt(loc, on);
+        }
+    }
+
+    /**
      * Returns the loaded tilemap.
      */
     //% block="current tilemap"

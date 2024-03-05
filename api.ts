@@ -348,6 +348,7 @@ namespace tileUtil {
     //% draggableParameters="reporter"
     //% group=Tiles
     //% weight=0
+    //% help=github:arcade-tile-util/docs/for-each-tile-in-map
     export function forEachTileInMap(tilemap: tiles.TileMapData, handler: (column: number, row: number, location: tiles.Location) => void) {
         for (let c = 0; c < tilemap.width; c++) {
             for (let r = 0; r < tilemap.height; r++) {

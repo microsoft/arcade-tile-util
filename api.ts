@@ -280,6 +280,118 @@ namespace tileUtil {
     }
 
     /**
+     * Sets the tile at a given location in a tilemap
+     */
+    //% blockId=tileUtil_setTileAt
+    //% block="set $tile at $location in $tilemap"
+    //% tilemap.shadow=variables_get
+    //% tilemap.defl=myTilemap
+    //% location.shadow=mapgettile
+    //% tile.shadow=tileset_tile_picker
+    //% group=Tiles
+    //% weight=8
+    //% blockGap=8
+    //% help=github:arcade-tile-util/docs/set-tile-at
+    export function setTileAt(tilemap: tiles.TileMapData, location: tiles.Location, tile: Image) {
+        let index: number;
+
+        const tileset = tilemap.getTileset();
+        for (let i = 0; i < tileset.length; i++) {
+            if (tileset[i].equals(tile)) {
+                index = i;
+                break;
+            }
+        }
+
+        if (index === undefined) {
+            // not found; append to the tileset if there are spots left.
+            const newIndex = tileset.length;
+            if (newIndex < 0xff) {
+                tileset.push(tile);
+                index = newIndex;
+            }
+        }
+
+        if (index === undefined) {
+            throw "Too many tiles in tilemap";
+        }
+
+
+        tilemap.setTile(
+            location.column,
+            location.row,
+            index
+        );
+    }
+
+    /**
+     * Sets whether a wall is on or off at a given location in a tilemap.
+     */
+    //% blockId=tileUtil_setWallAt
+    //% block="set wall $on at $location in $tilemap"
+    //% tilemap.shadow=variables_get
+    //% tilemap.defl=myTilemap
+    //% location.shadow=mapgettile
+    //% tile.shadow=tileset_tile_picker
+    //% group=Tiles
+    //% weight=7
+    //% help=github:arcade-tile-util/docs/set-wall-at
+    export function setWallAt(tilemap: tiles.TileMapData, location: tiles.Location, on: boolean) {
+        tilemap.setWall(location.column, location.row, on);
+    }
+
+    /**
+     * Tests to see if the tile at a given location in a tilemap matches a given tile image.
+     */
+    //% blockId=tileUtil_tileIs
+    //% block="tile in $tilemap at $location is $tile"
+    //% tilemap.shadow=variables_get
+    //% tilemap.defl=myTilemap
+    //% location.shadow=mapgettile
+    //% tile.shadow=tileset_tile_picker
+    //% group=Tiles
+    //% weight=5
+    //% blockGap=8
+    //% help=github:arcade-tile-util/docs/tile-is
+    export function tileIs(tilemap: tiles.TileMapData, location: tiles.Location, tile: Image): boolean {
+        return tilemap.getTileImage(
+            tilemap.getTile(location.column, location.row)
+        ).equals(tile);
+    }
+
+    /**
+     * Tests to see if there is a wall at a given location in a tilemap.
+     */
+    //% blockId=tileUtil_tileIsWall
+    //% block="tile in $tilemap at $location is wall"
+    //% tilemap.shadow=variables_get
+    //% tilemap.defl=myTilemap
+    //% location.shadow=mapgettile
+    //% group=Tiles
+    //% weight=4
+    //% blockGap=8
+    //% help=github:arcade-tile-util/docs/tile-is-wall
+    export function tileIsWall(tilemap: tiles.TileMapData, location: tiles.Location): boolean {
+        return tilemap.isWall(location.column, location.row);
+    }
+
+
+    /**
+     * Gets the tile image in a tilemap at the given location
+     */
+    //% blockId=tileUtil_getTileImage
+    //% block="tile image in $tilemap at $location"
+    //% tilemap.shadow=variables_get
+    //% tilemap.defl=myTilemap
+    //% location.shadow=mapgettile
+    //% group=Tiles
+    //% weight=3
+    //% help=github:arcade-tile-util/docs/get-tile-image
+    export function getTileImage(tilemap: tiles.TileMapData, location: tiles.Location): Image {
+        return tilemap.getTileImage(tilemap.getTile(location.column, location.row));
+    }
+
+    /**
      * Returns the loaded tilemap.
      */
     //% block="current tilemap"

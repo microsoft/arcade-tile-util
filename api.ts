@@ -334,4 +334,25 @@ namespace tileUtil {
             for (const cb of createdHandlers) cb.handler(sprite)
         }
     }
+
+    /**
+     * Loops over each tile in a tilemap and runs the nested code
+     *
+     * @param tilemap The tilemap to loop over
+     * @param handler The code to run
+     */
+    //% blockId=tileUtil_forEachTileInMap
+    //% block="for each tile in $tilemap with $column $row $location"
+    //% tilemap.shadow=tileUtil_getLoadedMap
+    //% handlerStatement
+    //% draggableParameters="reporter"
+    //% group=Tiles
+    //% weight=0
+    export function forEachTileInMap(tilemap: tiles.TileMapData, handler: (column: number, row: number, location: tiles.Location) => void) {
+        for (let c = 0; c < tilemap.width; c++) {
+            for (let r = 0; r < tilemap.height; r++) {
+                handler(c, r, new tiles.Location(c, r, null));
+            }
+        }
+    }
 }

@@ -40,6 +40,25 @@ namespace tileUtil {
             this.coveredTiles.push(new _CoveredTile(column, row, image));
         }
 
+        uncoverTile(column: number, row: number) {
+            for (let i = 0; i < this.coveredTiles.length; i++) {
+                const tile = this.coveredTiles[i];
+                if (tile.column === column && tile.row === row) {
+                    this.coveredTiles.removeAt(i);
+                    return;
+                }
+            }
+        }
+
+        isTileCovered(column: number, row: number) {
+            for (const tile of this.coveredTiles) {
+                if (tile.column === column && tile.row === row) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         clearCoveredTiles() {
             this.coveredTiles = [];
         }

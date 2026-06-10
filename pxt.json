@@ -34,6 +34,7 @@
         "docs/is-sprite-overlapping-wall.md",
         "docs/is-tile-covered.md",
         "docs/load-connected-map.md",
+        "docs/locations-equal.md",
         "docs/on-map-loaded.md",
         "docs/on-map-unloaded.md",
         "docs/replace-all-tiles.md",

@@ -488,7 +488,7 @@ namespace tileUtil {
     //% handlerStatement
     //% draggableParameters="reporter"
     //% group=Tiles
-    //% weight=0
+    //% weight=10
     //% help=github:arcade-tile-util/docs/for-each-tile-in-map
     export function forEachTileInMap(tilemap: tiles.TileMapData, handler: (column: number, row: number, location: tiles.Location) => void) {
         for (let c = 0; c < tilemap.width; c++) {
@@ -496,6 +496,23 @@ namespace tileUtil {
                 handler(c, r, new tiles.Location(c, r, null));
             }
         }
+    }
+
+    /**
+     * Checks to see if two tile locations are the same (have the same column and row).
+     *
+     *
+     * @param a The first location
+     * @param b The second location
+     */
+    //% blockId=tileUtil_locationsEqual
+    //% block="$a equals $b"
+    //% a.shadow=mapgettile
+    //% b.shadow=mapgettile
+    //% group="Tiles" weight=0
+    //% help=github:arcade-tile-util/docs/locations-equal
+    export function locationsEqual(a: tiles.Location, b: tiles.Location): boolean {
+        return !!(a == b || (a && b && a.column == b.column && a.row == b.row));
     }
 
     /**

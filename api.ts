@@ -600,7 +600,7 @@ namespace tileUtil {
      * @param tilemap An optional tilemap to check for the location in. If not given, the current tilemap will be used.
      */
     //% blockId=tileUtil_isSpriteOverlappingLocation
-    //% block="$sprite overlaps $location||in $tilemap"
+    //% block="$sprite is overlapping $location||in $tilemap"
     //% sprite.shadow=variables_get
     //% sprite.defl=mySprite
     //% location.shadow=mapgettile

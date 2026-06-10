@@ -246,6 +246,34 @@ namespace tileUtil {
     }
 
     /**
+     * Uncover a tile at a location that was previously covered with coverTile or coverAllTiles.
+     */
+    //% block="uncover $location"
+    //% blockId=tileUtil_uncoverTile
+    //% location.shadow=mapgettile
+    //% group="Tiles" weight=34 blockGap=8
+    //% help=github:arcade-tile-util/docs/uncover-tile
+    export function uncoverTile(location: tiles.Location) {
+        if (!game.currentScene().tileMap || !game.currentScene().tileMap.enabled) return;
+
+        _state().uncoverTile(location.column, location.row);
+    }
+
+    /**
+     * Checks to see if a tile at a location is currently covered.
+     */
+    //% block="is $location covered"
+    //% blockId=tileUtil_isTileCovered
+    //% location.shadow=mapgettile
+    //% group="Tiles" weight=33 blockGap=8
+    //% help=github:arcade-tile-util/docs/is-tile-covered
+    export function isTileCovered(location: tiles.Location): boolean {
+        if (!game.currentScene().tileMap || !game.currentScene().tileMap.enabled) return false;
+
+        return _state().isTileCovered(location.column, location.row);
+    }
+
+    /**
      * Replace all tiles of a given kind in the loaded tilemap with
      * another tile.
      */
@@ -450,6 +478,7 @@ namespace tileUtil {
     /**
      * Loops over each tile in a tilemap and runs the nested code
      *
+     *
      * @param tilemap The tilemap to loop over
      * @param handler The code to run
      */
@@ -467,5 +496,228 @@ namespace tileUtil {
                 handler(c, r, new tiles.Location(c, r, null));
             }
         }
+    }
+
+    /**
+     * Gets an array of all tile Locations that are overlapping a sprite.
+     *
+     *
+     * @param sprite The sprite to get the locations for
+     * @param tilemap An optional tilemap to check for the tiles in. If not given, the current tilemap will be used.
+     */
+    //% blockId=tileUtil_allTilesOverlappingSprite
+    //% block="all tiles overlapping $sprite||in $tilemap"
+    //% sprite.shadow=variables_get
+    //% sprite.defl=mySprite
+    //% tilemap.shadow=tileUtil_getLoadedMap
+    //% group="Sprites"
+    //% weight=100
+    //% blockGap=8
+    //% help=github:arcade-tile-util/docs/all-tiles-overlapping-sprite
+    export function allTilesOverlappingSprite(sprite: Sprite, tilemap?: tiles.TileMapData): tiles.Location[] {
+        if (!tilemap) {
+            const scene = game.currentScene();
+            if (!scene.tileMap) return [];
+            tilemap = scene.tileMap.data;
+        }
+
+        let x0 = sprite.left >> tilemap.scale;
+        let x1 = (sprite.right - 1) >> tilemap.scale;
+        let y0 = sprite.top >> tilemap.scale;
+        let y1 = (sprite.bottom - 1) >> tilemap.scale;
+
+        const result: tiles.Location[] = [];
+        for (let x = x0; x <= x1; x++) {
+            for (let y = y0; y <= y1; y++) {
+                result.push(tiles.getTileLocation(x, y));
+            }
+        }
+
+        return result;
+    }
+
+    /**
+     * Gets an array of all tile Locations that are overlapping a sprite on a given edge. Note
+     * that this only returns locations that are overlapping, so walls that the sprite is colliding
+     * with will not be returned.
+     *
+     *
+     * @param sprite The sprite to get the locations for
+     * @param edge The edge to check for overlapping tiles
+     * @param tilemap An optional tilemap to check for the tiles in. If not given, the current tilemap will be used.
+     */
+    //% blockId=tileUtil_allTilesOverlappingSpriteEdge
+    //% block="all tiles overlapping $sprite on $edge edge||in $tilemap"
+    //% sprite.shadow=variables_get
+    //% sprite.defl=mySprite
+    //% tilemap.shadow=tileUtil_getLoadedMap
+    //% group="Sprites"
+    //% weight=90
+    //% help=github:arcade-tile-util/docs/all-tiles-overlapping-sprite-edge
+    export function allTilesOverlappingSpriteEdge(sprite: Sprite, edge: CollisionDirection, tilemap?: tiles.TileMapData): tiles.Location[] {
+        if (!tilemap) {
+            const scene = game.currentScene();
+            if (!scene.tileMap) return [];
+            tilemap = scene.tileMap.data;
+        }
+
+        let x0 = sprite.left >> tilemap.scale;
+        let x1 = (sprite.right - 1) >> tilemap.scale;
+        let y0 = sprite.top >> tilemap.scale;
+        let y1 = (sprite.bottom - 1) >> tilemap.scale;
+
+        switch (edge) {
+            case CollisionDirection.Top:
+                y1 = y0;
+                break;
+            case CollisionDirection.Bottom:
+                y0 = y1;
+                break;
+            case CollisionDirection.Left:
+                x1 = x0;
+                break;
+            case CollisionDirection.Right:
+                x0 = x1;
+                break;
+        }
+
+        const result: tiles.Location[] = [];
+        for (let x = x0; x <= x1; x++) {
+            for (let y = y0; y <= y1; y++) {
+                result.push(tiles.getTileLocation(x, y));
+            }
+        }
+
+        return result;
+    }
+
+    /**
+     * Checks to see if a sprite is overlapping a given location.
+     *
+     *
+     * @param sprite The sprite to check
+     * @param location The location to check for overlap
+     * @param tilemap An optional tilemap to check for the location in. If not given, the current tilemap will be used.
+     */
+    //% blockId=tileUtil_isSpriteOverlappingLocation
+    //% block="$sprite overlaps $location||in $tilemap"
+    //% sprite.shadow=variables_get
+    //% sprite.defl=mySprite
+    //% location.shadow=mapgettile
+    //% tilemap.shadow=tileUtil_getLoadedMap
+    //% group="Sprites"
+    //% weight=80
+    //% blockGap=8
+    //% help=github:arcade-tile-util/docs/is-sprite-overlapping-location
+    export function isSpriteOverlappingLocation(sprite: Sprite, location: tiles.Location, tilemap?: tiles.TileMapData): boolean {
+        if (!sprite || !location) return false;
+
+        if (!tilemap) {
+            const scene = game.currentScene();
+            if (!scene.tileMap) return false;
+            tilemap = scene.tileMap.data;
+        }
+
+        const left = location.column << tilemap.scale;
+        const top = location.row << tilemap.scale;
+        const right = left + (1 << tilemap.scale);
+        const bottom = top + (1 << tilemap.scale);
+
+
+        if (sprite.left >= right || sprite.right <= left || sprite.top >= bottom || sprite.bottom <= top) {
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * Checks to see if a sprite is overlapping any wall tiles in a tilemap. Note that this is
+     * checking to see if the sprite is overlapping a tile that is a wall, not if the sprite is
+     * colliding with a wall. If a sprite is colliding with a wall, it will not be overlapping
+     * it.
+     *
+     *
+     * @param sprite The sprite to check
+     * @param tilemap An optional tilemap to check for walls in. If not given, the current tilemap will be used.
+     */
+    //% blockId=tileUtil_isSpriteOverlappingWall
+    //% block="$sprite is overlapping wall||in $tilemap"
+    //% sprite.shadow=variables_get
+    //% sprite.defl=mySprite
+    //% tilemap.shadow=tileUtil_getLoadedMap
+    //% group="Sprites"
+    //% weight=70
+    //% blockGap=8
+    //% help=github:arcade-tile-util/docs/is-sprite-overlapping-wall
+    export function isSpriteOverlappingWall(sprite: Sprite, tilemap?: tiles.TileMapData): boolean {
+        if (!tilemap) {
+            const scene = game.currentScene();
+            if (!scene.tileMap) return false;
+            tilemap = scene.tileMap.data;
+        }
+
+        for (const loc of allTilesOverlappingSprite(sprite, tilemap)) {
+            if (tilemap.isWall(loc.column, loc.row)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * Checks to see if a sprite is overlapping a tile of a given kind in a tilemap.
+     *
+     * @param sprite The sprite to check
+     * @param tile The tile image to check for overlap with
+     * @param tilemap An optional tilemap to check for the tile in. If not given, the current tilemap will be used.
+     */
+    //% blockId=tileUtil_isSpriteOverlappingTile
+    //% block="$sprite is overlapping $tile||in $tilemap"
+    //% sprite.shadow=variables_get
+    //% sprite.defl=mySprite
+    //% tile.shadow=tileset_tile_picker
+    //% tile.decompileIndirectFixedInstances=true
+    //% tilemap.shadow=tileUtil_getLoadedMap
+    //% group="Sprites"
+    //% weight=60
+    //% blockGap=8
+    //% help=github:arcade-tile-util/docs/is-sprite-overlapping-tile
+    export function isSpriteOverlappingTile(sprite: Sprite, tile: Image, tilemap?: tiles.TileMapData): boolean {
+        if (!tilemap) {
+            const scene = game.currentScene();
+            if (!scene.tileMap) return false;
+            tilemap = scene.tileMap.data;
+        }
+
+        for (const loc of allTilesOverlappingSprite(sprite, tilemap)) {
+            if (tileIs(tilemap, loc, tile)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * Checks to see if the sprite is currently clipping through walls. Clipping happens when a sprite
+     * is moved inside a wall tile and the physics engine does not know which direction to bump them
+     * out in. Clipping sprites will ignore all collisions with walls until they are full outside of
+     * the wall.
+     *
+     *
+     * @param sprite The sprite to check
+     */
+    //% blockId=tileUtil_isSpriteClipping
+    //% block="$sprite is clipping"
+    //% sprite.shadow=variables_get
+    //% sprite.defl=mySprite
+    //% group="Sprites"
+    //% weight=50
+    //% blockGap=8
+    //% help=github:arcade-tile-util/docs/is-sprite-clipping
+    export function isSpriteClipping(sprite: Sprite): boolean {
+        return !!(sprite.flags & sprites.Flag.IsClipping);
     }
 }
